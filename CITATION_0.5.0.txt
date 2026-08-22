@@ -1,0 +1,19 @@
+citHeader("To cite the umg package in publications use:")
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "umg: Unified Model Graphs for Statistical Models in Psychology",
+  author   = person(given = "Hsiu-Ting", family = "Yu"),
+  year     = "2026",
+  note     = sprintf("R package version %s",
+                     utils::packageVersion("umg")),
+  url      = "https://github.com/hsiutingyu/umg",
+  textVersion = sprintf(
+    "Yu, H.-T. (2026). umg: Unified Model Graphs for statistical models in psychology (R package version %s). https://github.com/hsiutingyu/umg",
+    utils::packageVersion("umg"))
+)
+
+citFooter(paste(
+  "A companion article describing the UMG grammar is under",
+  "preparation; please check citation(\"umg\") in future versions",
+  "for the published reference."))

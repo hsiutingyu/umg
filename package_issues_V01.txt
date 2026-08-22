@@ -1,0 +1,78 @@
+package_issues_V01.R  --  umg 0.5.0 -- 2026-08-22 08:41:18 
+
+[1] umg_count_parameters(meanstructure = TRUE): documentation says 'a mean parameter per
+    source vertex'; the code counts one per random vertex (all rv), so df is wrong.
+  moments = 14, free means counted = 6 (source vertices: 2), total free = 13, df = 1; lavaan: npar = 9, df = 5
+  source code: free_mean <- sum(vapply(nodes, function(v) v$role == 'rv', logical(1)))  [all rv, not sources]
+
+[2] umg_implied_ci() returns both (x, y | Z) and (y, x | Z) for the same independence:
+  x y given
+1 X U      
+2 U X      
+  one-factor, 4 indicators: rows = 12 ; unordered pairs = 6 
+  (print.umg_identification reports nrow(implied_ci) as the number of implied CIs.)
+
+[3] umg_validate() W5 accepts (a) a child-plate member absent from the parent plate and
+    (b) edges crossing plate boundaries that no index licenses (no index-licensing rule):
+  (a) child member 'y' not in parent plate -> ACCEPTED 
+  (b) inner-plate y_t -> outer-plate b0_i -> ACCEPTED 
+  (c) item-plate a_j -> person-plate theta_i in umg_irt('2PL') -> umg_validate: TRUE 
+
+[4] umg_formative() output is flagged by umg_check_scaling():
+  vertex scaled  via
+1      C  FALSE none
+
+[5] umg_check_scaling() treats any constant parent as fixing the scale (via = 'constant parent'),
+    although a constant parent fixes a location, not a variance:
+  vertex scaled             via
+1      F   TRUE constant parent
+
+[6] ?umg_node says 'Annotations are available to renderers and exporters', but no backend
+    draws dist or annot. grep over the installed 0.5.0 sources (plot/ggplot/tikz/dot):
+  plot.umg     mentions 'dist': FALSE mentions 'annot': FALSE
+  umg_ggplot   mentions 'dist': FALSE mentions 'annot': FALSE
+  umg_to_tikz  mentions 'dist': FALSE mentions 'annot': FALSE
+  umg_to_dot   mentions 'dist': FALSE mentions 'annot': FALSE
+  e.g. node a: dist = LogNormal(0, 1) | annot = prior -> neither appears in umg_to_tikz()/umg_to_dot() output:
+  tikz contains 'LogNormal': FALSE | dot contains 'LogNormal': FALSE 
+
+[7] umg_to_dot() writes style=curved on cov edges; Graphviz rejects it:
+  dot -Tpng: Warning: gvrender_set_style: unsupported style curved - ignoring 
+
+[8] umg_to_dot() appends '// note: crossed plates rendered by smallest-enclosing assignment'
+    for NESTED plates too (a member of a child plate is also a member of its parent):
+  note present for the nested sleepstudy diagram: TRUE 
+
+[9] Rendering: (a) arrowheads into square (categorical) vertices are hidden under the glyph on
+    diagonal approaches (edge shrink uses the circle radius); (b) nested inner-plate index label
+    collides with a vertex; (c) fixed-loading labels overlap in umg_growth(); (d) ggplot backend:
+    long factor labels overflow the node glyph and cov curves cross intermediate nodes.
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+  see output/issue9a_irt_arrowheads.png, issue9b_nested_label.png, issue9c_growth_labels.png,
+  and output/backend_ggplot_hs_cfa.png
+
+[10] umg_to_tikz() prints negative zero coordinates ('-0'):
+  lines with '-0)' or '-0,': 1 
+
+[11] umg_mimic()/umg_formative() draw no covariance among the observed causes, so the diagram
+    literally asserts their independence; the counting rule then differs from the fitted MIMIC:
+  umg_mimic: 21 moments, 12 free, df = 9; implied observed CIs: z1_|_z2_|_; z2_|_z1_|_
+  lavaan MIMIC (fixed.x = TRUE default): npar = 10, df = 8
+
+[12] umg_esem(): the t-rule count ignores the m(m-1) rotational constraints of EFA:
+  2 factors, 6 indicators: 21 moments, 19 free, df = 2; EFA df = ((6-2)^2 - (6+2))/2 = 4
+
+[13] umg_eda_scaffold(): the 'score_S' display for a growth slope uses the row mean of the
+    repeated measures (same proxy as for the intercept), which is not a slope proxy:
+  displays: score_I, score_S, resid_heatmap | x label of score_S: mean of y1, y2, y3, y4 
+
+[14] umg_from_lavaan() ignores '~1' rows and umg_to_lavaan() emits no intercepts; a growth
+    model round-trips only because growth() re-adds the mean structure (cfa() refit differs):
+  growth() refit df = 5; cfa() refit df = 3; original df = 5
+
+Done: 2026-08-22 08:41:20 

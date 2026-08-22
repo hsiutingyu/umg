@@ -1,0 +1,39 @@
+citHeader("To cite the umg package in publications use:")
+
+# version read from DESCRIPTION at citation time (0.6.0 for this release)
+vers <- {
+  if (exists("meta") && !is.null(meta$Version)) meta$Version
+  else as.character(utils::packageVersion("umg"))
+}
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "umg: Unified Model Graphs for Statistical Models in Psychology",
+  author   = person(given = "Hsiu-Ting", family = "Yu"),
+  year     = "2026",
+  note     = paste("R package version", vers),
+  url      = "https://github.com/hsiutingyu/umg",
+  textVersion = paste0(
+    "Yu, H.-T. (2026). umg: Unified Model Graphs for statistical models ",
+    "in psychology (R package version ", vers, "). ",
+    "https://github.com/hsiutingyu/umg")
+)
+
+bibentry(
+  bibtype  = "Unpublished",
+  title    = paste("When is a diagram a model? A unified, determinate",
+                   "graphical notation for the statistical models of",
+                   "psychology"),
+  author   = person(given = "Hsiu-Ting", family = "Yu"),
+  year     = "2026",
+  note     = "Manuscript submitted for publication",
+  textVersion = paste0(
+    "Yu, H.-T. (2026). When is a diagram a model? A unified, determinate ",
+    "graphical notation for the statistical models of psychology. ",
+    "Manuscript submitted for publication.")
+)
+
+citFooter(paste(
+  "The second entry is the companion manuscript that describes the UMG",
+  "grammar; please check citation(\"umg\") in future versions for the",
+  "published reference."))

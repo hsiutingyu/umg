@@ -1,0 +1,122 @@
+---
+title: "A Gallery of Model Families in the UMG Grammar"
+author: "Hsiu-Ting Yu"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{A Gallery of Model Families in the UMG Grammar}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
+                      fig.width = 6.5, fig.height = 4.5, dpi = 96)
+library(umg)
+```
+
+Each model below is one line of code. The point of the gallery is that
+adopting the grammar for a new model is a matter of editing a near
+neighbour rather than starting from the definition. Every builder
+returns a `umg` object that passes `umg_validate()` by construction and
+can be re-rendered with `plot()`, `umg_ggplot()`, `umg_to_tikz()`, or
+`umg_to_dot()`.
+
+## Measurement models
+
+### Reflective factor (CFA)
+
+```{r cfa}
+plot(umg_factor("F", paste0("y", 1:5)))
+```
+
+### Bifactor
+
+```{r bifactor}
+plot(umg_bifactor(paste0("y", 1:6),
+                  groups = list(g1 = paste0("y", 1:3),
+                                g2 = paste0("y", 4:6))))
+```
+
+### Second-order factor
+
+```{r secondorder}
+plot(umg_secondorder(list(F1 = paste0("y", 1:3),
+                          F2 = paste0("y", 4:6),
+                          F3 = paste0("y", 7:9))))
+```
+
+### Exploratory SEM (full cross-loadings)
+
+```{r esem}
+plot(umg_esem(c("F1", "F2"), paste0("y", 1:6)))
+```
+
+### Formative measurement and MIMIC
+
+```{r formative}
+plot(umg_formative(paste0("x", 1:4), outcomes = c("y1", "y2")))
+plot(umg_mimic(c("age", "sex"), paste0("y", 1:4)))
+```
+
+## Item response models
+
+```{r irt}
+plot(umg_irt("2PL"))
+plot(umg_irt("graded"))     # graded response model
+plot(umg_irt("2PL", n_dim = 2))  # multidimensional IRT
+```
+
+The diagnostic classification model combines latent categorical
+attributes with the crossed-plate measurement structure:
+
+```{r dcm}
+Q <- rbind(c(1, 1, 0, 0, 1, 0),
+           c(0, 1, 1, 0, 0, 1),
+           c(0, 0, 1, 1, 1, 1))
+plot(umg_dcm(Q))
+```
+
+## Hierarchy, growth, and longitudinal models
+
+```{r growth}
+plot(umg_growth(4))
+plot(umg_riclpm(waves = 4))   # random-intercept cross-lagged panel
+```
+
+## Mixtures
+
+A growth mixture model is the composition of a growth motif and a
+mixture wrapper:
+
+```{r gmm}
+plot(umg_mixture(umg_growth(4), targets = c("I", "S")))
+plot(umg_lca(paste0("u", 1:5)))   # latent class analysis
+```
+
+## Networks
+
+```{r network}
+plot(umg_network(paste0("x", 1:5)))
+```
+
+## General SEM assembler
+
+When no single-purpose motif fits, assemble a model from a measurement
+and a structural specification:
+
+```{r sem}
+m <- umg_sem(
+  measurement = list(F1 = paste0("y", 1:3),
+                     F2 = paste0("y", 4:6),
+                     F3 = paste0("y", 7:9)),
+  structural  = list(c("F1", "F3"), c("F2", "F3"))
+)
+plot(m)
+```
+
+## Causal license: the badge
+
+```{r badge}
+plot(umg_mediation(confounder = TRUE, badge = "structural"))
+```

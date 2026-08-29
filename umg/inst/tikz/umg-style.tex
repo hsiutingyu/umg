@@ -1,0 +1,71 @@
+% ============================================================
+% Title:  UMG TikZ lexicon: visual primitives of the Unified
+%         Model Graph (UMG) system
+% File:   umg-style.tex
+% Author: H.-T. Yu
+% Date:   2026-06-12
+% ============================================================
+% Input this file in the preamble of any document (manuscript or
+% standalone figure) that draws UMG diagrams. Requires TikZ.
+%
+% Channel-to-attribute mapping (see Table 2 of the manuscript):
+%   Fill (luminance) -> observability  (shaded = observed; white = latent)
+%   Shape            -> support        (circle = continuous; square = categorical)
+%   Border           -> role           (single = random variable; double = deterministic)
+%   Diamond          -> fixed unknown parameter (frequentist target of estimation)
+%   Triangle         -> known constant (e.g., the unit constant for means)
+%   Rounded box      -> plate (exchangeable replication; nesting = hierarchy)
+% ------------------------------------------------------------
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,shapes.geometric,calc}
+
+\tikzset{
+  % ----- Vertex primitives -----------------------------------------
+  % continuous latent random variable: white circle
+  vCL/.style={draw, circle, minimum size=9.5mm, inner sep=1pt, line width=0.7pt, fill=white},
+  % continuous observed random variable: shaded circle
+  vCO/.style={draw, circle, minimum size=9.5mm, inner sep=1pt, line width=0.7pt, fill=black!13},
+  % categorical latent random variable (e.g., latent class): white square
+  vDL/.style={draw, rectangle, minimum size=8.5mm, inner sep=2pt, line width=0.7pt, fill=white},
+  % categorical observed random variable (e.g., item response): shaded square
+  vDO/.style={draw, rectangle, minimum size=8.5mm, inner sep=2pt, line width=0.7pt, fill=black!13},
+  % fixed unknown parameter: open diamond
+  vP/.style={draw, diamond, aspect=1.15, minimum size=7.5mm, inner sep=0.5pt, line width=0.7pt, fill=white},
+  % deterministic node: double border (shape follows support)
+  vDetC/.style={draw, circle, double, double distance=1.1pt, minimum size=9.5mm, inner sep=1pt, line width=0.5pt, fill=white},
+  vDetD/.style={draw, rectangle, double, double distance=1.1pt, minimum size=8.5mm, inner sep=2pt, line width=0.5pt, fill=white},
+  % known constant: triangle (RAM heritage); label inside
+  vK/.style={draw, isosceles triangle, isosceles triangle apex angle=60,
+             shape border rotate=90, minimum size=7mm, inner sep=0.5pt,
+             line width=0.7pt, fill=white},
+  % small disturbance/residual node (continuous latent, reduced size)
+  vEps/.style={draw, circle, minimum size=6.5mm, inner sep=0.5pt, line width=0.6pt, fill=white},
+  % ----- Edge primitives -------------------------------------------
+  % stochastic/functional dependence (regression, loading)
+  eReg/.style={->, >={Stealth[length=2.8mm]}, line width=0.7pt},
+  % covariance / unanalyzed association (symmetric)
+  eCov/.style={<->, >={Stealth[length=2.5mm]}, line width=0.7pt},
+  % deterministic assignment
+  eDet/.style={->, >={Stealth[length=2.8mm]}, line width=0.7pt, dashed},
+  % mixing edge: latent class -> parameter set (open arrowhead)
+  eMix/.style={->, >={Triangle[open, length=3mm]}, line width=0.7pt},
+  % variance stub: double-headed self-loop on a node
+  eVar/.style={<->, >={Stealth[length=2mm]}, line width=0.6pt, looseness=5},
+  % edge parameter label
+  elab/.style={font=\small, fill=white, inner sep=1pt, sloped=false},
+  elabplain/.style={font=\small, inner sep=1.5pt},
+  % ----- Plates ------------------------------------------------------
+  plate/.style={draw, rounded corners=4pt, inner sep=9pt, line width=0.6pt},
+  platelab/.style={anchor=south east, inner sep=4pt, font=\small\itshape},
+  platelabnw/.style={anchor=north west, inner sep=4pt, font=\small\itshape},
+  % ----- Auxiliary ---------------------------------------------------
+  dist/.style={font=\footnotesize, text=black!70, inner sep=1pt},
+  causalbadge/.style={draw, rounded corners=2pt, font=\footnotesize\sffamily,
+                      inner sep=2.5pt, fill=black!5},
+}
+
+% Residual stub: arrow into #1 from direction #2 (angle), with label #3.
+% Compact abbreviation for an explicit disturbance node; see Section 4.5.
+\newcommand{\umgstub}[3]{%
+  \draw[eReg] ($(#1)+(#2:0.95)$) -- (#1);
+  \node[elabplain] at ($(#1)+(#2:1.25)$) {#3};%
+}

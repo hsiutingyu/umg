@@ -1,0 +1,82 @@
+---
+title: "Reading Identification off the Diagram"
+author: "Hsiu-Ting Yu"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reading Identification off the Diagram}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(umg)
+```
+
+Because a well-formed UMG determines a likelihood, several necessary
+conditions for identification can be read from the picture before any
+estimation is attempted. The functions in this vignette operationalise
+that idea. None of them replaces a formal identification analysis; each
+catches a routine error at the drawing board, where errors are cheapest
+to fix.
+
+## Scaling marks for latent variables
+
+Every latent continuous random vertex must have its scale fixed.
+`umg_check_scaling()` reports the mechanism detected for each.
+
+```{r scaling}
+umg_check_scaling(umg_factor("F", paste0("y", 1:4)))   # marker loading
+umg_check_scaling(umg_esem("F1", paste0("y", 1:4)))    # fixed variance
+```
+
+A latent vertex reported as `"none"` is the single most common
+specification error in latent variable modelling, surfaced as a missing
+mark rather than a nonconvergence.
+
+## The counting rule
+
+`umg_count_parameters()` applies the classical t-rule, comparing free
+parameters against the distinct pieces of information the observed
+variables supply. A non-negative `df` is necessary, not sufficient.
+
+```{r counting}
+umg_count_parameters(umg_factor("F", paste0("y", 1:6)))
+```
+
+## Label switching
+
+Mixture and latent class models are identified only up to a permutation
+of the classes.
+
+```{r labelswitch}
+umg_labelswitching(umg_mixture(umg_growth(4), c("I", "S")))
+```
+
+## Conditional independence and d-separation
+
+`umg_dsep()` reads a conditional-independence claim off the diagram.
+Covariance edges are treated as latent common causes (the projection of
+an acyclic directed mixed graph onto a DAG).
+
+```{r dsep}
+med <- umg_mediation(direct = FALSE)
+umg_dsep(med, "X", "Y")               # FALSE: connected through M
+umg_dsep(med, "X", "Y", given = "M")  # TRUE: blocked by the mediator
+```
+
+The implied independencies of the model (its testable implications) are
+enumerated under the local Markov property:
+
+```{r impliedci}
+umg_implied_ci(umg_mediation(direct = FALSE))
+```
+
+## A single summary
+
+`umg_identify()` collects these readings into one printable object.
+
+```{r identify}
+umg_identify(umg_factor("F", paste0("y", 1:6)))
+```

@@ -1,0 +1,129 @@
+---
+title: "Unified Model Graphs: An Introduction"
+author: "Hsiu-Ting Yu"
+date: "2026-06-12"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Unified Model Graphs: An Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
+                      fig.width = 7, fig.height = 5)
+library(umg)
+```
+
+## The grammar in one paragraph
+
+A Unified Model Graph (UMG) types every vertex on three dimensions:
+observability (fill: shaded = observed), support (shape: circle =
+continuous, square = categorical), and inferential role (border and
+dedicated shapes: diamond = fixed unknown parameter, triangle = known
+constant, double border = deterministic). Edges distinguish stochastic
+dependence, symmetric covariance, deterministic assignment, and
+mixture selection. Plates encode replication; nesting encodes
+hierarchy. Every well-formed diagram corresponds to a likelihood
+factorization, so the diagram is the model.
+
+## Building a one-factor model by hand
+
+```{r cfa-by-hand}
+m <- umg_model(
+  nodes = list(
+    umg_node("eta", "$\\eta_i$", observed = FALSE, dist = "N(0, psi)"),
+    umg_node("y1", "$y_{1i}$", observed = TRUE),
+    umg_node("y2", "$y_{2i}$", observed = TRUE),
+    umg_node("y3", "$y_{3i}$", observed = TRUE)
+  ),
+  edges = list(
+    umg_edge("eta", "y1", "dep", fixed = 1),
+    umg_edge("eta", "y2", "dep", label = "$\\lambda_2$"),
+    umg_edge("eta", "y3", "dep", label = "$\\lambda_3$")
+  ),
+  plates = list(
+    umg_plate("person", c("eta", "y1", "y2", "y3"), "i = 1, ..., N")
+  )
+)
+m
+plot(m)
+```
+
+## From a lavaan model
+
+```{r lavaan, eval = requireNamespace("lavaan", quietly = TRUE)}
+model_syntax <- '
+  visual  =~ x1 + x2 + x3
+  textual =~ x4 + x5 + x6
+  speed   =~ x7 + x8 + x9
+'
+g <- umg_from_lavaan(model_syntax)
+plot(g)
+```
+
+## From an lme4 formula
+
+```{r lmer, eval = requireNamespace("lme4", quietly = TRUE)}
+g2 <- umg_from_lmer(Reaction ~ Days + (Days | Subject))
+plot(g2)
+```
+
+## TikZ export
+
+`umg_to_tikz()` emits TikZ code in the dialect of the umg-style.tex
+lexicon shipped in `inst/tikz/`, so programmatic and hand-drawn
+diagrams are stylistically identical.
+
+```{r tikz}
+cat(head(umg_to_tikz(m), 12), sep = "\n")
+```
+
+## Model-data duality
+
+Each UMG motif induces a canonical exploratory display. With the
+sleepstudy data, the plate and random-coefficient motifs induce
+trellis and spaghetti displays:
+
+```{r duality, eval = requireNamespace("lme4", quietly = TRUE) && requireNamespace("ggplot2", quietly = TRUE)}
+data(sleepstudy, package = "lme4")
+plots <- umg_eda_scaffold(g2, sleepstudy, id = "Subject", time = "Days")
+names(plots)
+plots$spaghetti
+```
+
+## Inspecting a diagram as data
+
+A diagram can be read out as ordinary data frames, which is convenient
+for tabulating a model in a manuscript or editing it programmatically
+before re-assembly with `umg_model()`.
+
+```{r inspect}
+m_sem <- umg_sem(
+  measurement = list(F1 = paste0("y", 1:3), F2 = paste0("y", 4:6)),
+  structural  = list(c("F1", "F2"))
+)
+as.data.frame(m_sem)                    # edges
+as.data.frame(m_sem, what = "vertices") # vertices
+summary(m_sem)
+```
+
+## Round-tripping to lavaan
+
+`umg_to_lavaan()` is the inverse of `umg_from_lavaan()`: it emits
+lavaan model syntax from a diagram. A directed edge from a latent to an
+observed vertex becomes a measurement loading (`=~`); other directed
+edges become regressions (`~`); covariance edges become `~~`. The
+correspondence between a diagram and a fitted model is thus operational
+in both directions.
+
+```{r to-lavaan}
+cat(umg_to_lavaan(m_sem))
+```
+
+```{r roundtrip, eval = requireNamespace("lavaan", quietly = TRUE)}
+syntax  <- "visual =~ x1 + x2 + x3\ntextual =~ x4 + x5 + x6"
+g       <- umg_from_lavaan(syntax)   # syntax  -> diagram
+back    <- umg_to_lavaan(g)          # diagram -> syntax
+cat(back)
+```

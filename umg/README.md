@@ -91,8 +91,8 @@ the random-intercept cross-lagged panel model, Gaussian graphical
 
 ## Citation
 
-Yu, H.-T. (2026). *Unified Model Graphs: A grammar for statistical
-models in psychology.* (Manuscript.)
+Yu, H.-T. (2026). *The Unified Model Graph: Drawing the Statistical
+Models of Psychology.* (Manuscript in preparation for submission.)
 
 ## License
 

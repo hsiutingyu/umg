@@ -21,16 +21,13 @@ bibentry(
 
 bibentry(
   bibtype  = "Unpublished",
-  title    = paste("When is a diagram a model? A unified, determinate",
-                   "graphical notation for the statistical models of",
-                   "psychology"),
+  title    = "The Unified Model Graph: Drawing the Statistical Models of Psychology",
   author   = person(given = "Hsiu-Ting", family = "Yu"),
   year     = "2026",
-  note     = "Manuscript submitted for publication",
+  note     = "Manuscript in preparation for submission",
   textVersion = paste0(
-    "Yu, H.-T. (2026). When is a diagram a model? A unified, determinate ",
-    "graphical notation for the statistical models of psychology. ",
-    "Manuscript submitted for publication.")
+    "Yu, H.-T. (2026). The Unified Model Graph: Drawing the Statistical ",
+    "Models of Psychology. Manuscript in preparation for submission.")
 )
 
 citFooter(paste(

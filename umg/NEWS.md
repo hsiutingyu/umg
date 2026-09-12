@@ -1,7 +1,7 @@
 # umg 0.6.0
 
 Correctness release. The demonstrations prepared for the companion
-manuscript (Yu, 2026, "When is a diagram a model?") exercised 0.5.0
+manuscript (Yu, 2026, "The Unified Model Graph") exercised 0.5.0
 against lavaan, lme4, mirt, dagitty, and Graphviz and recorded fourteen
 behaviours that were wrong, misleading, or cosmetic. The statistical and
 export defects are fixed here; each fix is pinned by a regression test

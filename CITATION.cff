@@ -1,0 +1,36 @@
+# CITATION.cff for the umg repository root (github.com/hsiutingyu/umg).
+# Drives GitHub's "Cite this repository" button. Zenodo reads .zenodo.json first
+# when both files are present. Update `version` (and add `date-released`,
+# YYYY-MM-DD) at every GitHub release; keep it equal to the CRAN version.
+cff-version: 1.2.0
+message: "If you use umg, please cite it as below, and cite the companion article once it is published."
+type: software
+title: "umg: Unified Model Graphs for Statistical Models in Psychology"
+version: "0.6.0"
+# date-released: 2026-MM-DD   # fill in at the release
+authors:
+  - family-names: "Yu"
+    given-names: "Hsiu-Ting"
+    orcid: "https://orcid.org/0000-0002-3668-8033"
+    affiliation: "Department of Psychology, National Chengchi University, Taipei, Taiwan"
+license: MIT
+repository-code: "https://github.com/hsiutingyu/umg"
+abstract: "Constructs, validates, lays out, and renders Unified Model Graphs (UMG), a formal graphical grammar for statistical models in psychology. Vertices are typed by observability, support, and inferential role; edges distinguish stochastic, symmetric, deterministic, and mixing dependence; plates encode replication and hierarchy. Diagrams can be built from motif builders or from fitted lavaan, lme4, mirt, blavaan, brms, OpenMx, and qgraph objects, exported back to lavaan syntax, and inspected for identification (scaling checks, a graphical counting rule, a d-separation reader)."
+keywords:
+  - "Unified Model Graph"
+  - "model diagrams"
+  - "path diagrams"
+  - "structural equation modeling"
+  - "multilevel models"
+  - "mixture models"
+  - "graphical models"
+  - "psychometrics"
+  - "R package"
+references:
+  - type: article
+    title: "The Unified Model Graph: Drawing the Statistical Models of Psychology"
+    authors:
+      - family-names: "Yu"
+        given-names: "Hsiu-Ting"
+    year: 2026
+    notes: "Manuscript submitted for publication (Behavior Research Methods, September 2026). Replace with the preprint DOI, then the article DOI."

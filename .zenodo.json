@@ -1,0 +1,24 @@
+{
+  "title": "umg: Unified Model Graphs for Statistical Models in Psychology",
+  "upload_type": "software",
+  "description": "<p>Constructs, validates, lays out, and renders Unified Model Graphs (UMG), a formal graphical grammar for statistical models in psychology. Vertices are typed by observability, support, and inferential role; edges distinguish stochastic, symmetric, deterministic, and mixing dependence; plates encode replication and hierarchy. Diagrams can be built from motif builders or from fitted lavaan, lme4, mirt, blavaan, brms, OpenMx, and qgraph objects, exported back to lavaan syntax, and inspected for identification (scaling checks, a graphical counting rule, a d-separation reader).</p><p>Companion article: Yu, H.-T. (2026). The Unified Model Graph: Drawing the statistical models of psychology. Manuscript submitted for publication (Behavior Research Methods, September 2026).</p>",
+  "creators": [
+    {
+      "name": "Yu, Hsiu-Ting",
+      "affiliation": "Department of Psychology, National Chengchi University, Taipei, Taiwan",
+      "orcid": "0000-0002-3668-8033"
+    }
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "Unified Model Graph", "model diagrams", "path diagrams",
+    "structural equation modeling", "multilevel models", "mixture models",
+    "graphical models", "psychometrics", "R package", "reproducibility"
+  ],
+  "related_identifiers": [
+    {"identifier": "https://github.com/hsiutingyu/umg", "relation": "isSupplementTo", "scheme": "url"},
+    {"identifier": "https://osf.io/d4xrm", "relation": "isSupplementedBy", "scheme": "url"}
+  ],
+  "language": "eng"
+}

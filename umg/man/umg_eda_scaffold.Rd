@@ -33,10 +33,11 @@ maps. The scaffolds are intentionally minimal; they are starting
 points for exploration, not finished graphics.
 }
 \examples{
-\dontrun{
+\dontshow{if (requireNamespace("ggplot2", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+set.seed(1)
 m <- umg_factor("F", paste0("y", 1:4))
 d <- as.data.frame(matrix(rnorm(400), ncol = 4,
                           dimnames = list(NULL, paste0("y", 1:4))))
 umg_eda_scaffold(m, d)
-}
+\dontshow{\}) # examplesIf}
 }

@@ -1,3 +1,22 @@
+# umg 0.6.1
+
+Documentation and metadata release, prepared in response to the CRAN
+reviewer's comments on the 0.6.0 submission. No user-visible behaviour,
+no function signature, and no computed result changes; the 0.5.0 and
+0.6.0 regression suites pass unchanged.
+
+* The DESCRIPTION Description field now cites the published results the
+  package implements, in the CRAN auto-linking form: plate notation
+  (Buntine, 1994, <doi:10.1613/jair.62>), the counting rule and scaling
+  checks (Bollen, 1989, <doi:10.1002/9781118619179>), and the
+  independence reader (Geiger, Verma, & Pearl, 1990,
+  <doi:10.1002/net.3230200504>; Lauritzen, Dawid, Larsen, & Leimer,
+  1990, <doi:10.1002/net.3230200503>).
+* The example for `umg_eda_scaffold()` is no longer wrapped in
+  `\dontrun{}`. It runs under `@examplesIf`, conditional on 'ggplot2'
+  being installed, which is the convention already used by
+  `umg_ggplot()` and `umg_render_dot()`, and it sets a seed.
+
 # umg 0.6.0
 
 Correctness release. The demonstrations prepared for the companion

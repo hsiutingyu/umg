@@ -1,7 +1,7 @@
 Package: umg
 Type: Package
 Title: Unified Model Graphs for Statistical Models in Psychology
-Version: 0.6.0
+Version: 0.6.1
 Authors@R: person(given = "Hsiu-Ting", family = "Yu",
     email = "hsiutingyu@gmail.com", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-3668-8033"))
@@ -20,7 +20,15 @@ Description: Constructs, validates, lays out, and renders Unified Model
     operational in both directions. Each diagram also exposes
     identification diagnostics (scaling checks, a graphical counting
     rule, and a d-separation reader) and generates the exploratory
-    display scaffolds implied by the model-data duality.
+    display scaffolds implied by the model-data duality. The notation
+    builds on established results for graphical and structural equation
+    models: plate notation follows Buntine (1994) <doi:10.1613/jair.62>;
+    the counting rule and scaling checks follow Bollen (1989)
+    <doi:10.1002/9781118619179>; and the independence reader implements
+    the d-separation criterion of Geiger, Verma and Pearl (1990)
+    <doi:10.1002/net.3230200504> through the equivalent ancestral graph
+    criterion of Lauritzen, Dawid, Larsen and Leimer (1990)
+    <doi:10.1002/net.3230200503>.
 License: MIT + file LICENSE
 URL: https://github.com/hsiutingyu/umg
 BugReports: https://github.com/hsiutingyu/umg/issues

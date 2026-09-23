@@ -25,13 +25,12 @@
 #' @param time Optional name of the within-cluster covariate (x axis
 #'   for spaghetti plots).
 #' @return A named list of ggplot objects (possibly empty).
-#' @examples
-#' \dontrun{
+#' @examplesIf requireNamespace("ggplot2", quietly = TRUE)
+#' set.seed(1)
 #' m <- umg_factor("F", paste0("y", 1:4))
 #' d <- as.data.frame(matrix(rnorm(400), ncol = 4,
 #'                           dimnames = list(NULL, paste0("y", 1:4))))
 #' umg_eda_scaffold(m, d)
-#' }
 #' @export
 umg_eda_scaffold <- function(model, data, id = NULL, time = NULL) {
   .umg_require("ggplot2", "umg_eda_scaffold")

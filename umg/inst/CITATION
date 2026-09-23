@@ -1,6 +1,6 @@
 citHeader("To cite the umg package in publications use:")
 
-# version read from DESCRIPTION at citation time (0.6.0 for this release)
+# version read from DESCRIPTION at citation time
 vers <- {
   if (exists("meta") && !is.null(meta$Version)) meta$Version
   else as.character(utils::packageVersion("umg"))

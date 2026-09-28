@@ -12,25 +12,9 @@ bibentry(
   author   = person(given = "Hsiu-Ting", family = "Yu"),
   year     = "2026",
   note     = paste("R package version", vers),
-  url      = "https://github.com/hsiutingyu/umg",
+  url      = "https://hsiutingyu.github.io/umg/",
   textVersion = paste0(
     "Yu, H.-T. (2026). umg: Unified Model Graphs for statistical models ",
     "in psychology (R package version ", vers, "). ",
-    "https://github.com/hsiutingyu/umg")
+    "https://hsiutingyu.github.io/umg/")
 )
-
-bibentry(
-  bibtype  = "Unpublished",
-  title    = "The Unified Model Graph: Drawing the Statistical Models of Psychology",
-  author   = person(given = "Hsiu-Ting", family = "Yu"),
-  year     = "2026",
-  note     = "Manuscript in preparation for submission",
-  textVersion = paste0(
-    "Yu, H.-T. (2026). The Unified Model Graph: Drawing the Statistical ",
-    "Models of Psychology. Manuscript in preparation for submission.")
-)
-
-citFooter(paste(
-  "The second entry is the companion manuscript that describes the UMG",
-  "grammar; please check citation(\"umg\") in future versions for the",
-  "published reference."))

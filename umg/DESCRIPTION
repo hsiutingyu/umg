@@ -30,7 +30,7 @@ Description: Constructs, validates, lays out, and renders Unified Model
     criterion of Lauritzen, Dawid, Larsen and Leimer (1990)
     <doi:10.1002/net.3230200503>.
 License: MIT + file LICENSE
-URL: https://github.com/hsiutingyu/umg
+URL: https://hsiutingyu.github.io/umg/, https://github.com/hsiutingyu/umg
 BugReports: https://github.com/hsiutingyu/umg/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -1,0 +1,136 @@
+# Package index
+
+## Building a diagram by hand
+
+Typed vertices, edges, and plates, assembled and validated into a UMG
+object.
+
+- [`umg_model()`](https://hsiutingyu.github.io/umg/reference/umg_model.md)
+  : Assemble and validate a Unified Model Graph
+- [`umg_node()`](https://hsiutingyu.github.io/umg/reference/umg_node.md)
+  : Create a UMG vertex
+- [`umg_edge()`](https://hsiutingyu.github.io/umg/reference/umg_edge.md)
+  : Create a UMG edge
+- [`umg_plate()`](https://hsiutingyu.github.io/umg/reference/umg_plate.md)
+  : Create a UMG plate
+
+## Motif builders: measurement
+
+One-line builders for common measurement models.
+
+- [`umg_factor()`](https://hsiutingyu.github.io/umg/reference/umg_factor.md)
+  : Reflective factor (measurement) motif
+- [`umg_bifactor()`](https://hsiutingyu.github.io/umg/reference/umg_bifactor.md)
+  : Bifactor measurement motif
+- [`umg_secondorder()`](https://hsiutingyu.github.io/umg/reference/umg_secondorder.md)
+  : Second-order factor motif
+- [`umg_esem()`](https://hsiutingyu.github.io/umg/reference/umg_esem.md)
+  : Exploratory structural equation model motif
+- [`umg_formative()`](https://hsiutingyu.github.io/umg/reference/umg_formative.md)
+  : Formative (composite) measurement motif
+- [`umg_mimic()`](https://hsiutingyu.github.io/umg/reference/umg_mimic.md)
+  : MIMIC (multiple-indicator multiple-cause) motif
+
+## Motif builders: item response and latent classes
+
+- [`umg_irt()`](https://hsiutingyu.github.io/umg/reference/umg_irt.md) :
+  Item response theory motif (crossed persons x items)
+- [`umg_dcm()`](https://hsiutingyu.github.io/umg/reference/umg_dcm.md) :
+  Diagnostic classification model (DCM) motif
+- [`umg_lca()`](https://hsiutingyu.github.io/umg/reference/umg_lca.md) :
+  Latent class motif
+- [`umg_mixture()`](https://hsiutingyu.github.io/umg/reference/umg_mixture.md)
+  : Add a finite-mixture wrapper to an existing UMG
+
+## Motif builders: structural, longitudinal, and network models
+
+- [`umg_sem()`](https://hsiutingyu.github.io/umg/reference/umg_sem.md) :
+  General structural equation model builder
+- [`umg_mediation()`](https://hsiutingyu.github.io/umg/reference/umg_mediation.md)
+  : Mediation motif
+- [`umg_growth()`](https://hsiutingyu.github.io/umg/reference/umg_growth.md)
+  : Latent growth-curve motif
+- [`umg_riclpm()`](https://hsiutingyu.github.io/umg/reference/umg_riclpm.md)
+  : Random-intercept cross-lagged panel model (RI-CLPM) motif
+- [`umg_network()`](https://hsiutingyu.github.io/umg/reference/umg_network.md)
+  : Undirected network (Gaussian graphical model) motif
+
+## From fitted model objects
+
+Build a UMG from a model specified or fitted in another package.
+
+- [`umg_from_OpenMx()`](https://hsiutingyu.github.io/umg/reference/umg_from_OpenMx.md)
+  : Build a UMG from an OpenMx RAM model
+- [`umg_from_blavaan()`](https://hsiutingyu.github.io/umg/reference/umg_from_blavaan.md)
+  : Build a UMG from a blavaan model
+- [`umg_from_brms()`](https://hsiutingyu.github.io/umg/reference/umg_from_brms.md)
+  : Build a UMG from a brms model
+- [`umg_from_lavaan()`](https://hsiutingyu.github.io/umg/reference/umg_from_lavaan.md)
+  : Build a UMG from a lavaan model
+- [`umg_from_lmer()`](https://hsiutingyu.github.io/umg/reference/umg_from_lmer.md)
+  : Build a UMG from an lme4 formula
+- [`umg_from_mirt()`](https://hsiutingyu.github.io/umg/reference/umg_from_mirt.md)
+  : Build a UMG from a fitted mirt model
+- [`umg_from_qgraph()`](https://hsiutingyu.github.io/umg/reference/umg_from_qgraph.md)
+  : Build a UMG from a qgraph object or weighted adjacency matrix
+
+## Reading a diagram
+
+Well-formedness, identification, and the conditional independencies a
+diagram implies.
+
+- [`umg_validate()`](https://hsiutingyu.github.io/umg/reference/umg_validate.md)
+  : Validate well-formedness of a UMG
+- [`umg_identify()`](https://hsiutingyu.github.io/umg/reference/umg_identify.md)
+  : Identification summary for a UMG
+- [`umg_check_scaling()`](https://hsiutingyu.github.io/umg/reference/umg_check_scaling.md)
+  : Check latent-variable scaling marks
+- [`umg_count_parameters()`](https://hsiutingyu.github.io/umg/reference/umg_count_parameters.md)
+  : Graphical parameter count (t-rule)
+- [`umg_labelswitching()`](https://hsiutingyu.github.io/umg/reference/umg_labelswitching.md)
+  : Flag label-switching symmetry in mixtures
+- [`umg_dsep()`](https://hsiutingyu.github.io/umg/reference/umg_dsep.md)
+  : Test d-separation in a UMG
+- [`umg_implied_ci()`](https://hsiutingyu.github.io/umg/reference/umg_implied_ci.md)
+  : Enumerate basis-set implied conditional independencies
+- [`print(`*`<umg_identification>`*`)`](https://hsiutingyu.github.io/umg/reference/print.umg_identification.md)
+  : Print a UMG identification summary
+
+## Rendering and export
+
+- [`plot(`*`<umg>`*`)`](https://hsiutingyu.github.io/umg/reference/plot.umg.md)
+  : Plot a UMG with grid graphics
+- [`umg_ggplot()`](https://hsiutingyu.github.io/umg/reference/umg_ggplot.md)
+  [`autoplot(`*`<umg>`*`)`](https://hsiutingyu.github.io/umg/reference/umg_ggplot.md)
+  : Render a UMG with ggplot2
+- [`umg_theme()`](https://hsiutingyu.github.io/umg/reference/umg_theme.md)
+  : Construct a UMG rendering theme
+- [`umg_layout()`](https://hsiutingyu.github.io/umg/reference/umg_layout.md)
+  : Compute a layered layout for a UMG
+- [`umg_save()`](https://hsiutingyu.github.io/umg/reference/umg_save.md)
+  : Save a UMG diagram to a file
+- [`umg_to_tikz()`](https://hsiutingyu.github.io/umg/reference/umg_to_tikz.md)
+  : Export a UMG as TikZ code
+- [`umg_to_dot()`](https://hsiutingyu.github.io/umg/reference/umg_to_dot.md)
+  : Export a UMG as Graphviz DOT code
+- [`umg_render_dot()`](https://hsiutingyu.github.io/umg/reference/umg_render_dot.md)
+  : Render a UMG through DiagrammeR (Graphviz)
+- [`umg_to_lavaan()`](https://hsiutingyu.github.io/umg/reference/umg_to_lavaan.md)
+  : Generate lavaan model syntax from a UMG
+
+## Exploratory displays implied by the model
+
+- [`umg_eda_scaffold()`](https://hsiutingyu.github.io/umg/reference/umg_eda_scaffold.md)
+  : Generate exploratory display scaffolds from a UMG
+- [`umg_caterpillar()`](https://hsiutingyu.github.io/umg/reference/umg_caterpillar.md)
+  : Caterpillar (shrinkage) plot of cluster-level estimates
+
+## Inspecting a UMG object
+
+- [`print(`*`<umg>`*`)`](https://hsiutingyu.github.io/umg/reference/print.umg.md)
+  : Print a Unified Model Graph
+- [`summary(`*`<umg>`*`)`](https://hsiutingyu.github.io/umg/reference/summary.umg.md)
+  [`print(`*`<summary.umg>`*`)`](https://hsiutingyu.github.io/umg/reference/summary.umg.md)
+  : Summarise a UMG
+- [`as.data.frame(`*`<umg>`*`)`](https://hsiutingyu.github.io/umg/reference/as.data.frame.umg.md)
+  : Coerce a UMG to a data frame

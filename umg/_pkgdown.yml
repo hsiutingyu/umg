@@ -1,0 +1,115 @@
+url: https://hsiutingyu.github.io/umg/
+
+# The git repository root is one level above the package (2608_CRAN_UMG/),
+# and GitHub Pages serves the repository's /docs folder, so the site is
+# written there rather than to the default umg/docs.
+destination: ../docs
+
+# The package lives in the umg/ subfolder of the repository, so source links
+# must include that folder or every "Source:" link returns 404.
+repo:
+  url:
+    home: https://github.com/hsiutingyu/umg/
+    source: https://github.com/hsiutingyu/umg/blob/HEAD/umg/
+    issue: https://github.com/hsiutingyu/umg/issues/
+    user: https://github.com/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#08306b"
+
+authors:
+  Hsiu-Ting Yu:
+    href: https://hsiutingyu.github.io/
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    intro:
+      text: Get started
+      href: articles/umg-intro.html
+
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - umg-intro
+  - umg-gallery
+  - umg-identification
+
+reference:
+- title: Building a diagram by hand
+  desc: Typed vertices, edges, and plates, assembled and validated into a UMG object.
+  contents:
+  - umg_model
+  - umg_node
+  - umg_edge
+  - umg_plate
+
+- title: "Motif builders: measurement"
+  desc: One-line builders for common measurement models.
+  contents:
+  - umg_factor
+  - umg_bifactor
+  - umg_secondorder
+  - umg_esem
+  - umg_formative
+  - umg_mimic
+
+- title: "Motif builders: item response and latent classes"
+  contents:
+  - umg_irt
+  - umg_dcm
+  - umg_lca
+  - umg_mixture
+
+- title: "Motif builders: structural, longitudinal, and network models"
+  contents:
+  - umg_sem
+  - umg_mediation
+  - umg_growth
+  - umg_riclpm
+  - umg_network
+
+- title: From fitted model objects
+  desc: Build a UMG from a model specified or fitted in another package.
+  contents:
+  - starts_with("umg_from_")
+
+- title: Reading a diagram
+  desc: Well-formedness, identification, and the conditional independencies a diagram implies.
+  contents:
+  - umg_validate
+  - umg_identify
+  - umg_check_scaling
+  - umg_count_parameters
+  - umg_labelswitching
+  - umg_dsep
+  - umg_implied_ci
+  - print.umg_identification
+
+- title: Rendering and export
+  contents:
+  - plot.umg
+  - umg_ggplot
+  - umg_theme
+  - umg_layout
+  - umg_save
+  - umg_to_tikz
+  - umg_to_dot
+  - umg_render_dot
+  - umg_to_lavaan
+
+- title: Exploratory displays implied by the model
+  contents:
+  - umg_eda_scaffold
+  - umg_caterpillar
+
+- title: Inspecting a UMG object
+  contents:
+  - print.umg
+  - summary.umg
+  - as.data.frame.umg

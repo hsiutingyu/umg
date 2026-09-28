@@ -7,11 +7,11 @@ no function signature, and no computed result changes; the 0.5.0 and
 
 * The DESCRIPTION Description field now cites the published results the
   package implements, in the CRAN auto-linking form: plate notation
-  (Buntine, 1994, <doi:10.1613/jair.62>), the counting rule and scaling
-  checks (Bollen, 1989, <doi:10.1002/9781118619179>), and the
+  (Buntine, 1994, [doi:10.1613/jair.62](https://doi.org/10.1613/jair.62)), the counting rule and scaling
+  checks (Bollen, 1989, [doi:10.1002/9781118619179](https://doi.org/10.1002/9781118619179)), and the
   independence reader (Geiger, Verma, & Pearl, 1990,
-  <doi:10.1002/net.3230200504>; Lauritzen, Dawid, Larsen, & Leimer,
-  1990, <doi:10.1002/net.3230200503>).
+  [doi:10.1002/net.3230200504](https://doi.org/10.1002/net.3230200504); Lauritzen, Dawid, Larsen, & Leimer,
+  1990, [doi:10.1002/net.3230200503](https://doi.org/10.1002/net.3230200503)).
 * The example for `umg_eda_scaffold()` is no longer wrapped in
   `\dontrun{}`. It runs under `@examplesIf`, conditional on 'ggplot2'
   being installed, which is the convention already used by

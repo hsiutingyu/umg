@@ -15,11 +15,12 @@ factorisation, so the diagram is the model.
 ## Installation
 
 ```r
-# from source
-install.packages("path/to/umg", repos = NULL, type = "source")
+# from GitHub (the package sits in the umg/ folder of the repository)
+# install.packages("remotes")
+remotes::install_github("hsiutingyu/umg", subdir = "umg")
 
-# or, during development
-# devtools::install_local("path/to/umg")
+# or from a local source copy
+# install.packages("path/to/umg", repos = NULL, type = "source")
 ```
 
 The package depends only on base R packages (`grid`, `grDevices`,
@@ -91,8 +92,8 @@ the random-intercept cross-lagged panel model, Gaussian graphical
 
 ## Citation
 
-Yu, H.-T. (2026). *The Unified Model Graph: Drawing the Statistical
-Models of Psychology.* (Manuscript in preparation for submission.)
+Run `citation("umg")` in R for the reference, with the installed
+version number, and a BibTeX entry.
 
 ## License
 

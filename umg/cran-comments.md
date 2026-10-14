@@ -31,7 +31,7 @@ changed between 0.6.0 and 0.6.1.
 ## Test environments
 
 * Local: Windows 11 x64 (build 26200), R 4.5.3 (2026-03-11 ucrt)
-* win-builder: R Under development (unstable) (2026-09-21 r90579 ucrt)
+* win-builder: R Under development (unstable) (2026-10-13 r90668 ucrt)
 
 ## R CMD check results
 
@@ -60,11 +60,14 @@ the name of the notation it implements). "observability" is a standard
 technical term in this domain: whether a variable is measured or
 inferred.
 
-The local Windows run additionally reports one environment-specific NOTE
-("checking for detritus in the temp directory ... 'lastMiKTeXException'")
-that is an artifact of the local MiKTeX installation used to typeset the
-PDF manual. It does not appear on win-builder and is not expected on
-CRAN's build systems.
+The local Windows run additionally reports two environment-specific
+NOTEs, neither of which appears on win-builder or is expected on CRAN's
+build systems. "checking for detritus in the temp directory ...
+'lastMiKTeXException'" is an artifact of the local MiKTeX installation
+used to typeset the PDF manual. "checking for future file timestamps ...
+unable to verify current time" is a failed network call to the online
+clock service that this check consults; no file in the package carries a
+future timestamp.
 
 ## macOS pre-submission check
 

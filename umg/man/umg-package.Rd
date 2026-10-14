@@ -49,6 +49,7 @@ the model-data duality.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://hsiutingyu.github.io/umg/}
   \item \url{https://github.com/hsiutingyu/umg}
   \item Report bugs at \url{https://github.com/hsiutingyu/umg/issues}
 }
